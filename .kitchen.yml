@@ -1,0 +1,35 @@
+---
+driver_plugin: vagrant
+driver_config:
+  product_name: chefdk
+  network:
+    - ["forwarded_port", {guest: 8080, host: 8080, auto_correct: true}]
+
+provisioner:
+  name: chef_zero
+
+platforms:
+- name: ubuntu-16.04
+  run_list:
+    - recipe[apt]
+
+suites:
+- name: kibana5_nginx_package
+  run_list:
+    - 'recipe[netstat]'
+    - 'recipe[nginx]'
+    - 'recipe[java]'
+    - 'recipe[kibana]'
+    - 'recipe[kibana::nginx]'
+  attributes:
+    kibana:
+      install_method: 'package'
+      version: 5
+      base_dir: '/usr/share/kibana/'
+      interface: '0.0.0.0'
+      nginx:
+        listen_http: 8080
+    java:
+      jdk_version: '8'
+    nginx:
+      default_site_enabled: false
