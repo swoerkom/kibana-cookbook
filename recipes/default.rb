@@ -25,3 +25,4 @@ directory node['kibana']['base_dir'] do
 end
 
 include_recipe "kibana::kibana#{node['kibana']['version']}"
+include_recipe "kibana::nginx"
