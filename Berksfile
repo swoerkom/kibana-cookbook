@@ -14,7 +14,6 @@ group :vagrant do
   cookbook 'apt'
   cookbook 'apache2'
   cookbook 'build-essential'
-  cookbook 'elasticsearch', '~> 3.4'
   cookbook 'java'
   cookbook 'netstat'
   cookbook 'ohai'
